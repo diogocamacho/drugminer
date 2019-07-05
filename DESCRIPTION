@@ -1,4 +1,4 @@
-Package: DrugMineR
+Package: drugminer
 Title: DrugMineR: Drug information retrieval tool.
 Version: 0.0.1
 Authors@R: person("Diogo", "Camacho", email = "diogo.camacho@wyss.harvard.edu", role = c("aut", "cre"))
