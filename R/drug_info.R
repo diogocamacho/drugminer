@@ -1,3 +1,9 @@
+#' Drug info
+#' 
+#' Given a KEGG query obtained using the \link{\code(kegg_query)} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
+#' 
+#' @param kegg_content The content of a KEGG query
+#' @return A tibble.
 drug_info <- function(drug_content) {
   
   # i'll need to carry this over
@@ -51,7 +57,8 @@ drug_info <- function(drug_content) {
   drug_mass <- as.numeric(str_remove_all(str_split(str_split(drug_content, "EXACT_MASS")[[1]][2], "\n")[[1]][1], " "))
   drug_weight <- as.numeric(str_remove_all(str_split(str_split(drug_content, "MOL_WEIGHT")[[1]][2], "\n")[[1]][1], " "))
   
-  mprops <- tibble::tibble(formula = drug_formula, 
+  mprops <- tibble::tibble(drug_id = drug_id,
+                           formula = drug_formula, 
                            exact_mass = drug_mass, 
                            molecular_weight = drug_weight)
   
