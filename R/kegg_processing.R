@@ -64,7 +64,7 @@ kegg_processing <- function(save_dir) {
   
     
   message("Saving...")
-  save(file = "data/KEGG_data.RData", KEGG, DRUG)
+  save(file = paste0(save_dir, "/", "KEGG_data.RData"), KEGG, DRUG)
   
   message("Done.")
 }
