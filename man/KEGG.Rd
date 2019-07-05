@@ -20,6 +20,6 @@
 KEGG
 }
 \description{
-Data from KEGG. Data was parsed with the \link{\code(retrieve_data)} function.
+Data from KEGG. Data was parsed with the retrieve_data function.
 }
 \keyword{datasets}

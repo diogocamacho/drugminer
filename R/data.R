@@ -1,6 +1,6 @@
 #' KEGG 
 #' 
-#' Data from KEGG. Data was parsed with the \link{\code(retrieve_data)} function.
+#' Data from KEGG. Data was parsed with the retrieve_data function.
 #' 
 #' @format A list of tibbles:
 #' \describe{
@@ -18,7 +18,7 @@
 
 #' DRUG
 #' 
-#' Data from KEGG, collected for drugs. Data was parsed with the \link{\code(retrieve_data)} function.
+#' Data from KEGG, collected for drugs. Data was parsed with the retrieve_data function.
 #' 
 #' @format A list of tibbles:
 #' \describe{
