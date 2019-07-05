@@ -19,9 +19,9 @@ compound_info <- function(kegg_content) {
                              pathway = str_extract_all(string = kegg_content, pattern = "(map\\d{5})")[[1]])
   
   # molecular properties
-  drug_formula <- str_remove_all(str_split(str_split(drug_content, "FORMULA")[[1]][2], "\n")[[1]][1], " ")
-  drug_mass <- as.numeric(str_remove_all(str_split(str_split(drug_content, "EXACT_MASS")[[1]][2], "\n")[[1]][1], " "))
-  drug_weight <- as.numeric(str_remove_all(str_split(str_split(drug_content, "MOL_WEIGHT")[[1]][2], "\n")[[1]][1], " "))
+  drug_formula <- str_remove_all(str_split(str_split(kegg_content, "FORMULA")[[1]][2], "\n")[[1]][1], " ")
+  drug_mass <- as.numeric(str_remove_all(str_split(str_split(kegg_content, "EXACT_MASS")[[1]][2], "\n")[[1]][1], " "))
+  drug_weight <- as.numeric(str_remove_all(str_split(str_split(kegg_content, "MOL_WEIGHT")[[1]][2], "\n")[[1]][1], " "))
   
   mprops <- tibble::tibble(compound_id = compound_id,
                            formula = drug_formula, 
@@ -36,6 +36,7 @@ compound_info <- function(kegg_content) {
   ext_ids <- tibble::tibble(compound_id = compound_id,
                             cas_id = cas_id, 
                             pubchem_sid = pubchem_sid, 
+                            pubchem_cid = sid2cid(pubchem_sid)$pubchem_cid,
                             chebi_id = chebi_id, 
                             drugbank_id = drugbank_id)
  
