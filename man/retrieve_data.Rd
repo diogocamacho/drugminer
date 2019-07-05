@@ -4,7 +4,7 @@
 \alias{retrieve_data}
 \title{Retrieve data}
 \usage{
-retrieve_data()
+retrieve_data(...)
 }
 \value{
 A list of tibbles: compounds, drugs, drug groups, pathways, and disease indications.
