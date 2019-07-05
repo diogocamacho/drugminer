@@ -75,11 +75,22 @@ drug_info <- function(drug_content) {
   drug_pathways <- tibble::tibble(id = drug_id,
                                  pathway_id = y1)
   
+  # external ids
+  cas_id <- str_split(str_split(drug_content, "CAS: ")[[1]][2], "\n")[[1]][1]
+  pubchem_sid <- str_split(str_split(drug_content, "PubChem: ")[[1]][2], "\n")[[1]][1]
+  chebi_id <- str_split(str_split(drug_content, "ChEBI: ")[[1]][2], "\n")[[1]][1]
+  drugbank_id <- str_split(str_split(drug_content, "DrugBank: ")[[1]][2], "\n")[[1]][1]
+  ext_ids <- tibble::tibble(drug_id = drug_id,
+                            cas_id = cas_id, 
+                            pubchem_sid = pubchem_sid, 
+                            chebi_id = chebi_id, 
+                            drugbank_id = drugbank_id)
   
   return(list(mixture = drug_mixture,
               group = drug_group,
               efficacy = drug_efficacy,
               targets = drug_targets,
               indication = drug_disease,
-              pathway = drug_pathways))
+              pathway = drug_pathways,
+              external_ids = ext_ids))
 }
