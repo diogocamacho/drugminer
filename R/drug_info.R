@@ -88,7 +88,8 @@ drug_info <- function(drug_content) {
   drugbank_id <- str_split(str_split(drug_content, "DrugBank: ")[[1]][2], "\n")[[1]][1]
   ext_ids <- tibble::tibble(drug_id = drug_id,
                             cas_id = cas_id, 
-                            pubchem_sid = pubchem_sid, 
+                            pubchem_sid = pubchem_sid,
+                            pubchem_cid = sid2cid(pubchem_sid)$pubchem_cid,
                             chebi_id = chebi_id, 
                             drugbank_id = drugbank_id)
   
