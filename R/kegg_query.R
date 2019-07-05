@@ -23,11 +23,11 @@ kegg_query <- function(query_string) {
     } else {
       x <- which(KEGG$compound$name == query_string)
       if (length(x) != 0) {
-        id <- KEGG$compound$id[x]
+        id <- KEGG$compound$compound_id[x]
       } else {
         x <- which(KEGG$compound$synonyms == query_string)
         if (length(x) != 0) {
-          id <- KEGG$compound$id[x]
+          id <- KEGG$compound$compound_id[x]
         } else {
           stop("Can't find that drug in KEGG.")
         }
