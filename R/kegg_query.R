@@ -29,7 +29,8 @@ kegg_query <- function(query_string) {
         if (length(x) != 0) {
           id <- KEGG$compound$compound_id[x]
         } else {
-          stop("Can't find that drug in KEGG.")
+          message("Can't find that drug in KEGG. Returning NA.")
+          return(NA)
         }
       }
     }
