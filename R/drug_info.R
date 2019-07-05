@@ -41,22 +41,21 @@ drug_info <- function(drug_content) {
   
   
   # drug targets
-  # y1 <- str_split(str_split(drug_content, "TARGET")[[1]][2], "\n")[[1]][1]
   y1 <- str_extract_all(string = drug_content, pattern = "(HSA:\\d{1,})")[[1]]
   y1 <- gsub("HSA:", "", y1)
   drug_targets <- tibble::tibble(id = drug_id,
                                  target_entrez = y1)
   
-  # if (!is.na(y1)) {
-  #   drug_targets <- unique(str_split(str_remove(string = y1, pattern = "^ *"), " ")[[1]][1])
-  #   drug_targets <- tibble::tibble(id = drug_id,
-  #                                  drug_targets = drug_targets)
-  # } else {
-  #   drug_targets <- tibble::tibble(id = drug_id,
-  #                                  drug_targets = NA)
-  # }
+  # molecular properties
+  drug_formula <- str_remove_all(str_split(str_split(drug_content, "FORMULA")[[1]][2], "\n")[[1]][1], " ")
+  drug_mass <- as.numeric(str_remove_all(str_split(str_split(drug_content, "EXACT_MASS")[[1]][2], "\n")[[1]][1], " "))
+  drug_weight <- as.numeric(str_remove_all(str_split(str_split(drug_content, "MOL_WEIGHT")[[1]][2], "\n")[[1]][1], " "))
   
+  mprops <- tibble::tibble(formula = drug_formula, 
+                           exact_mass = drug_mass, 
+                           molecular_weight = drug_weight)
   
+
   # disease indication
   y1 <- str_split(drug_content, "DISEASE")[[1]][2]
   if (!is.na(y1)) {
@@ -92,5 +91,6 @@ drug_info <- function(drug_content) {
               targets = drug_targets,
               indication = drug_disease,
               pathway = drug_pathways,
-              external_ids = ext_ids))
+              external_ids = ext_ids,
+              properties = mprops))
 }
