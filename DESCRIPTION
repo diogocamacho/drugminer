@@ -4,15 +4,16 @@ Version: 0.0.1
 Authors@R: person("Diogo", "Camacho", email = "diogo.camacho@wyss.harvard.edu", role = c("aut", "cre"))
 Description: Based on information available on KEGG, extract information for given compounds, such as target, class, and biophysical properties.
 License: GPL-3 + file LICENSE
-Depends: R (>= 3.4.0),
-  AnnotationDbi,
-  dbparser,
-  dplyr,
+Depends: R (>= 3.4.0)
+biocViews:
+Imports:   dplyr,
   ggplot2,
   httr,
   org.Hs.eg.db,
   stringr,
-  tibble
+  tibble,
+  dbparser, 
+  org.Hs.eg.db
 Encoding: UTF-8
 LazyData: true
 Suggests: 
