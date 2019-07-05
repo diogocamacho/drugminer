@@ -6,13 +6,13 @@ Description: Based on information available on KEGG, extract information for giv
 License: GPL-3 + file LICENSE
 Depends: R (>= 3.4.0)
 biocViews:
-Imports:   dplyr,
+Imports: dplyr,
   ggplot2,
   httr,
-  org.Hs.eg.db,
   stringr,
   tibble,
   dbparser, 
+  AnnotationDbi,
   org.Hs.eg.db
 Encoding: UTF-8
 LazyData: true
