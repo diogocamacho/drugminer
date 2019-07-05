@@ -1,5 +1,24 @@
 retrieve_data <- function() {
   
+  ## all compounds in kegg
+  message("Downloading KEGG compounds...")
+  query_url <- "http://rest.kegg.jp/list/compound"
+  compound_content <- content(POST(query_url), as = "text")
+  kegg_compounds <- str_split(compound_content, "cpd:")[[1]]
+  kegg_compounds <- kegg_compounds[-which(kegg_compounds == "")]
+  tmp <- vector(mode = "list", length = length(kegg_compounds))
+  for (i in seq(1, length(tmp))) {
+    a1 <- str_split(kegg_compounds[i], "\t")[[1]] 
+    a2 <- str_split(a1[2], ";")[[1]]
+    a2 <- tolower(gsub("\n", "", sapply(a2, function(y) gsub("^ ", "", y))))
+    tmp[[i]] <- tibble::tibble(id = a1[1], 
+                               name = tolower(a2[1]),
+                               synonyms = a2[1:length(a2)][-1])
+  }
+  compound <- dplyr::bind_rows(tmp)
+  rm(tmp)
+  
+  
   ## all drugs in kegg
   message("Downloading KEGG drugs...")
   query_url <- "http://rest.kegg.jp/list/drug"
