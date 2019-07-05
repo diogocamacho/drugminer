@@ -2,7 +2,7 @@ Package: drugminer
 Title: DrugMineR: Drug information retrieval tool.
 Version: 0.0.1
 Authors@R: person("Diogo", "Camacho", email = "diogo.camacho@wyss.harvard.edu", role = c("aut", "cre"))
-Description: Based on information available on KEGG, extract information for given compounds, such as target, class, and biophysical properties.
+Description: 
 License: GPL-3 + file LICENSE
 Depends: R (>= 3.4.0)
 biocViews:
