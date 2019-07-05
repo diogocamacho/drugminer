@@ -23,6 +23,7 @@ kegg_processing <- function(save_dir) {
     tgts[[i]] <- d1$targets
     indic[[i]] <- d1$indication
     pths[[i]] <- d1$pathway
+    mps[[i]] <- d1$properties
   }
   
   message("Building data frames...")
@@ -32,6 +33,7 @@ kegg_processing <- function(save_dir) {
   tgts <- dplyr::bind_rows(tgts)
   indic <- dplyr::bind_rows(indic)
   pths <- dplyr::bind_rows(pths)
+  mps <- dplyr::bind_rows(mps)
   
   prep <- prep %>% 
     dplyr::mutate(., drug_name = KEGG$drug$name[match(prep$id, KEGG$drug$id)])
