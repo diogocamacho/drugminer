@@ -13,5 +13,5 @@ compound_info(kegg_content)
 A tibble.
 }
 \description{
-Given a KEGG query obtained using the \link{\code(kegg_query)} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
+Given a KEGG query obtained using the \code{\link(kegg_query)} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
 }
