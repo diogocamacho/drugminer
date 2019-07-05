@@ -3,7 +3,7 @@
 #' Retrieves all data from KEGG using the REST API. This is a no-parameter function.
 #' 
 #' @return A list of tibbles: compounds, drugs, drug groups, pathways, and disease indications.
-retrieve_data <- function() {
+retrieve_data <- function(...) {
   
   ## all compounds in kegg
   message("Downloading KEGG compounds...")
