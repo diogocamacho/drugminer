@@ -1,8 +1,8 @@
 #' KEGG 
 #' 
-#' Data from KEGG, collected for both drugs and compunds. Data was parsed with the \link{\code(retrieve_data)} function.
+#' Data from KEGG. Data was parsed with the \link{\code(retrieve_data)} function.
 #' 
-#' @format For the KEGG object:
+#' @format A list of tibbles:
 #' \describe{
 #'   \item{drug}{A tibble with KEGG drug IDs and drug names}
 #'   \item{drug_group}{A tibble with KEGG drug group IDs and drug group names}
@@ -12,7 +12,15 @@
 #'   \item{compound}{A tibble withe KEGG compound IDs and compound name}
 #' }
 #' 
-#' @format For the DRUG object:
+#' @source \url{https://www.kegg.jp}
+"KEGG"
+
+
+#' DRUG
+#' 
+#' Data from KEGG, collected for drugs. Data was parsed with the \link{\code(retrieve_data)} function.
+#' 
+#' @format A list of tibbles:
 #' \describe{
 #'   \item{drug_group}{A tibble mapping KEGG drug IDs to KEGG drug group IDs, group name, and drug name}
 #'   \item{drug_uses}{A tibble mapping KEGG drug IDs to known uses for the drugs (efficacy) and drug name}
@@ -23,12 +31,12 @@
 #' }
 #' 
 #' @source \url{https://www.kegg.jp}
-"KEGG_data"
+"DRUG"
 
 
 #' DrugBank
 #' 
-#' Data from DrugBank
+#' Data from DrugBank.
 #' 
 #' @format A list of tibbles:
 #' \describe{
@@ -40,4 +48,4 @@
 #' }
 #' 
 #' @source \url{https://www.drugbank.ca}
-"DRUGBANK_data"
+"DRUGBANK"
