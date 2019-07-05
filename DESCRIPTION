@@ -15,6 +15,6 @@ Depends: R (>= 3.4.0),
   tibble
 Encoding: UTF-8
 LazyData: true
-Suggests: plotly, webchem, XML
+Suggests: 
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
