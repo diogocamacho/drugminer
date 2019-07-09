@@ -1,6 +1,6 @@
 #' KEGG drug query
 #' 
-#' Extracts information from KEGG for a given drug or compound of interest using the KEGG REST API. The POST request is done using the `httr` package. Given that this is a character vector that is unformated, it is likely unreadable and it is recommended that you run \codek{\link(extract_info)} on the output of this function.
+#' Extracts information from KEGG for a given drug or compound of interest using the KEGG REST API. The POST request is done using the `httr` package. Given that this is a character vector that is unformated, it is likely unreadable and it is recommended that you run \code{\link{extract_info}} on the output of this function.
 #' 
 #' @param query_string A character string with compound or drug name.
 #' @return The content of the POST request.

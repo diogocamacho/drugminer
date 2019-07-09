@@ -1,9 +1,12 @@
 #' Parse DrugBank
 #' 
-#' Wrapper function to parse DrugBank XML file and generate a tibble for usage in DrugMineR. Built on the `dbparser` package. The data that is provided with `DrugMineR` was buil using DrugBank v5.1.4.
+#' Wrapper function to parse DrugBank XML file and generate a tibble for usage in DrugMineR. Built on the `dbparser` package. The data that is provided with `DrugMineR` was built using DrugBank v5.1.4.
 #' 
 #' @param drugbank_xml Full XML database file for DrugBank ([from here](https://www.drugbank.ca/releases/latest))
 #' @return A tibble for DrugBank information
+#' 
+#' @example 
+#' drugbank_parsed <- parse_drugbank("path/to/drugbank.xml")
 parse_drugbank <- function(drugbank_xml) {
   
   message("Loading DrugBank data to memory...")

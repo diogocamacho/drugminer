@@ -10,8 +10,8 @@ extract_info(kegg_content)
 \item{kegg_content}{REST API content for a KEGG query on a drug or compound.}
 }
 \value{
-Information on compound or drug, including chemical formula, external ids, disease indications, or pathways involved. Please refer to the \code{\link(drug_info)} or \code{\link(compound_info)} for details.
+Information on compound or drug, including chemical formula, external ids, disease indications, or pathways involved. Please refer to the \code{\link{drug_info}} or \code{\link{compound_info}} for details.
 }
 \description{
-Given the output of a POST request to KEGG REST API, returns information on either drug or compound queried using the \code{\link(drug_info)} or \code{\link(compound_info)}, respectively. The input to the function comes from the \code{\link(kegg_query)} output.
+Given the output of a POST request to KEGG REST API, returns information on either drug or compound queried using the \code{\link{drug_info}} or \code{\link{compound_info}}, respectively. The input to the function comes from the \code{\link{kegg_query}} output.
 }

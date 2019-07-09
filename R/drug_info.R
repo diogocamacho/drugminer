@@ -1,6 +1,6 @@
 #' Drug info
 #' 
-#' Given a KEGG query obtained using the \code{\link(kegg_query)} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
+#' Given a KEGG query obtained using the \code{\link{kegg_query}} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
 #' 
 #' @param kegg_content The content of a KEGG query
 #' @return A tibble.

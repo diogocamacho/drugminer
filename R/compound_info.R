@@ -1,12 +1,15 @@
 #' Compound info
 #' 
-#' Given a KEGG query obtained using the \code{\link(kegg_query)} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
+#' Given a KEGG query obtained using the \code{\link{kegg_query}} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
 #' 
 #' @param kegg_content The content of a KEGG query
 #' @return A tibble.
+#' 
+#' @example 
+#' aspirin_query <- kegg_query("aspirin")
+#' aspirin_info <- compound_info(aspirin_query)
 compound_info <- function(kegg_content) {
   
-  # i'll need to carry this over
   compound_id <- str_extract(string = str_split(string = kegg_content, pattern = "NAME")[[1]][1], pattern = "(C\\d{5})")
   
   drug_map <- tibble::tibble(compound_id = compound_id,
