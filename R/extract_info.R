@@ -5,7 +5,7 @@
 #' @param kegg_content REST API content for a KEGG query on a drug or compound.
 #' @return Information on compound or drug, including chemical formula, external ids, disease indications, or pathways involved. Please refer to the \code{\link{drug_info}} or \code{\link{compound_info}} for details.
 #' 
-#' @example 
+#' @examples 
 #' q <- kegg_query(query_string = "aspirin")
 #' info <- extract_info(kegg_content = q)
 extract_info <- function(kegg_content) {

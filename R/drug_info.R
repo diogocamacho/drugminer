@@ -4,6 +4,10 @@
 #' 
 #' @param kegg_content The content of a KEGG query
 #' @return A tibble.
+#' 
+#' @examples 
+#' q <- kegg_query(query_string = "aspirin")
+#' info <- extract_info(kegg_content = q)
 drug_info <- function(drug_content) {
   
   # i'll need to carry this over

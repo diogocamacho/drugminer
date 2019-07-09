@@ -15,3 +15,6 @@ A tibble for DrugBank information
 \description{
 Wrapper function to parse DrugBank XML file and generate a tibble for usage in DrugMineR. Built on the `dbparser` package. The data that is provided with `DrugMineR` was built using DrugBank v5.1.4.
 }
+\examples{
+drugbank_parsed <- parse_drugbank("path/to/drugbank.xml")
+}

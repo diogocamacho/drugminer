@@ -15,3 +15,6 @@ A list of tibbles that contain general information, target information, pathways
 \description{
 This function will perform a query of a given compound/drug in KEGG or PubChem and return available data based on queries to the REST APIs for either database.
 }
+\examples{
+compound_query("aspirin")
+}

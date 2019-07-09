@@ -5,7 +5,7 @@
 #' @param drugbank_xml Full XML database file for DrugBank ([from here](https://www.drugbank.ca/releases/latest))
 #' @return A tibble for DrugBank information
 #' 
-#' @example 
+#' @examples 
 #' drugbank_parsed <- parse_drugbank("path/to/drugbank.xml")
 parse_drugbank <- function(drugbank_xml) {
   

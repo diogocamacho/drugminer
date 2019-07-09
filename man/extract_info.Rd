@@ -15,3 +15,7 @@ Information on compound or drug, including chemical formula, external ids, disea
 \description{
 Given the output of a POST request to KEGG REST API, returns information on either drug or compound queried using the \code{\link{drug_info}} or \code{\link{compound_info}}, respectively. The input to the function comes from the \code{\link{kegg_query}} output.
 }
+\examples{
+q <- kegg_query(query_string = "aspirin")
+info <- extract_info(kegg_content = q)
+}

@@ -12,3 +12,6 @@ A list of tibbles: compounds, drugs, drug groups, pathways, and disease indicati
 \description{
 Retrieves all data from KEGG using the REST API. This is a no-parameter function.
 }
+\examples{
+kegg_data <- retrieve_data()
+}

@@ -15,3 +15,6 @@ A tibble with PubChem SID and corresponding PubChem CID
 \description{
 Function converts a PubChem SID into a PubChem CID using the NCBI's REST API for PubChem.
 }
+\examples{
+sid2cid(query = "7847177")
+}

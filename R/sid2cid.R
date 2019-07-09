@@ -5,7 +5,7 @@
 #' @param query A PubChem SID
 #' @return A tibble with PubChem SID and corresponding PubChem CID
 #' 
-#' @example 
+#' @examples 
 #' sid2cid(query = "7847177")
 sid2cid <- function(query) {
   

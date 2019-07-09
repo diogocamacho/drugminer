@@ -5,7 +5,7 @@
 #' @param pubchem_cid A PubChem CID
 #' @return A tibble with CID, molecular formula, molecular weight, canonical SMILES, and InChIKey.
 #' 
-#' @example 
+#' @examples 
 #' property_extractor("5090")
 property_extractor <- function(pubchem_cid) {
    

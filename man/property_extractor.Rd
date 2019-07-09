@@ -15,3 +15,6 @@ A tibble with CID, molecular formula, molecular weight, canonical SMILES, and In
 \description{
 Extracts molecular properties for a compound of interest based on its PubChem CID using the PubChem REST API.
 }
+\examples{
+property_extractor("5090")
+}

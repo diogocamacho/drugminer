@@ -4,7 +4,7 @@
 #' 
 #' @return A list of tibbles: compounds, drugs, drug groups, pathways, and disease indications.
 #' 
-#' @example 
+#' @examples 
 #' kegg_data <- retrieve_data()
 retrieve_data <- function(...) {
   

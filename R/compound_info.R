@@ -5,7 +5,7 @@
 #' @param kegg_content The content of a KEGG query
 #' @return A tibble.
 #' 
-#' @example 
+#' @examples 
 #' aspirin_query <- kegg_query("aspirin")
 #' aspirin_info <- compound_info(aspirin_query)
 compound_info <- function(kegg_content) {

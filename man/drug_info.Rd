@@ -15,3 +15,7 @@ A tibble.
 \description{
 Given a KEGG query obtained using the \code{\link{kegg_query}} function, returns information on a chemical compound. Returned elements are drug ids for compound (when available), pathways the compound is involved in, chemical formula, and external ids (CAS, PubChem, ChEBI, and DrugBank)  for compound.
 }
+\examples{
+q <- kegg_query(query_string = "aspirin")
+info <- extract_info(kegg_content = q)
+}

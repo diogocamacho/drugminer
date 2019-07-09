@@ -5,7 +5,7 @@
 #' @param query_string A character string with a compound/drug name
 #' @return A list of tibbles that contain general information, target information, pathways where compound is involved, diseases associated with compound/drug, common uses for a drug of interest, and KEGG drug groups for compound of interest.
 #' 
-#' @example 
+#' @examples 
 #' compound_query("aspirin")
 compound_query <- function(query_string) {
   # make vectors to hold all results
