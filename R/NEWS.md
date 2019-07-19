@@ -1,3 +1,7 @@
+# Version 0.1.2
+### Minor changes
+ - Fixed dependency issue where packages were not being loaded upon starting `drugminer`. (for future reference: there seems to be an issue with Imports versus Depends in the DESCRIPTION file, where the former does not seem to work that well while the latter always does. see more [here](https://stackoverflow.com/questions/37568884/r-package-does-not-load-dependencies).)
+
 # Version 0.1.1
 ## Major changes
  - Was missing the `pubchem2cas` function that is called on the `compound_query` wrapper.
