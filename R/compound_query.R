@@ -132,62 +132,230 @@ compound_query <- function(query_string) {
         
       }
     } else {
-      # if you don't find anything, search pubmed
+      # if you don't find anything, search pubchem
       b1 <- name2cid(query_string[i])
-      b2 <- property_extractor(b1$pubchem_cid)
-      b3 <- pubchem2cas(b1$pubchem_cid)
-      
-      # general properties
-      general[[i]] <- tibble::tibble(name = query_string[i],
-                                     kegg_id = NA,
-                                     pubchem_cid = b3$pubchem_cid,
-                                     drugbank_id = NA,
-                                     cas_rn = b3$cas_rn,
-                                     formula = a2$properties$formula,
-                                     exact_mass = a2$properties$exact_mass,
-                                     molecular_weight = a2$properties$molecular_weight,
-                                     chebi_id = NA,
-                                     canonical_smiles = b2$canonical_smiles,
-                                     inchikey = b2$inchikey)
-      
-      # targets
-      targets[[i]] <- tibble::tibble(name = query_string[i],
-                                     kegg_id = NA,
-                                     pubchem_cid = b3$pubchem_cid,
-                                     drugbank_id = NA,
-                                     target_entrez = NA,
-                                     target_symbol = NA)
-      
-      # pathways
-      pathways[[i]] <- tibble::tibble(name = query_string[i],
+      if (!is.na(b1$pubchem_cid)) {
+        b2 <- property_extractor(b1$pubchem_cid)
+        b3 <- pubchem2cas(b1$pubchem_cid)
+        if (!is.na(b3$cas_rn)) {
+          b4 <- which(DRUGBANK$general$cas_number == b3$cas_rn)
+          if (length(b4) != 0) {
+            b5 <- DRUGBANK$general$primary_key[b4]
+            # general properties
+            general[[i]] <- tibble::tibble(name = query_string[i],
+                                           kegg_id = NA,
+                                           pubchem_cid = b3$pubchem_cid,
+                                           drugbank_id = b5,
+                                           cas_rn = b3$cas_rn,
+                                           formula = b2$molecular_formula,
+                                           exact_mass = NA,
+                                           molecular_weight = b2$molecular_weight,
+                                           chebi_id = DRUGBANK$external_ids[DRUGBANK$external_ids$parent_key == b5, ] %>% dplyr::filter(., resource == "ChEBI") %>% dplyr::select(., identifier) %>% as.numeric,
+                                           canonical_smiles = b2$canonical_smiles,
+                                           inchikey = b2$inchikey)
+            
+            # targets
+            targets[[i]] <- tibble::tibble(name = query_string[i],
+                                           kegg_id = NA,
+                                           pubchem_cid = b3$pubchem_cid,
+                                           drugbank_id = b5,
+                                           target_entrez = NA,
+                                           target_symbol = NA)
+            
+            # pathways
+            pathways[[i]] <- tibble::tibble(name = query_string[i],
+                                            kegg_id = NA,
+                                            pubchem_cid = b3$pubchem_cid,
+                                            drugbank_id = b5,
+                                            pathway_id = NA,
+                                            pathway_name = if(length(which(DRUGBANK$pathway$parent_key == b5)) != 0) {
+                                              DRUGBANK$pathway$name[DRUGBANK$pathway$parent_key == b5] } else { NA })
+            
+            # diseases
+            diseases[[i]] <- tibble::tibble(name = query_string[i],
+                                            kegg_id = NA,
+                                            pubchem_cid = b3$pubchem_cid,
+                                            drugbank_id = b5,
+                                            disease_id = NA,
+                                            disease_name = NA)
+            
+            # uses
+            uses[[i]] <- tibble::tibble(name = query_string[i],
+                                        kegg_id = NA,
+                                        pubchem_cid = b3$pubchem_cid,
+                                        drugbank_id = b5,
+                                        drug_uses = NA)
+            
+            # drug groups
+            dgroups[[i]] <- tibble::tibble(name = query_string[i],
+                                           kegg_id = NA,
+                                           pubchem_cid = b3$pubchem_cid,
+                                           drugbank_id = b5,
+                                           group_id = NA,
+                                           group_name = if (length(which(DRUGBANK$category$parent_key == b5)) != 0) { 
+                                             tolower(DRUGBANK$category$category[DRUGBANK$category$parent_key == b5])
+                                             } else { NA })
+            
+            
+          } else { # <-- if it has no drugbank id but has cas
+            # general properties
+            general[[i]] <- tibble::tibble(name = query_string[i],
+                                           kegg_id = NA,
+                                           pubchem_cid = b3$pubchem_cid,
+                                           drugbank_id = NA,
+                                           cas_rn = b3$cas_rn,
+                                           formula = b2$molecular_formula,
+                                           exact_mass = NA,
+                                           molecular_weight = b2$molecular_weight,
+                                           chebi_id = NA,
+                                           canonical_smiles = b2$canonical_smiles,
+                                           inchikey = b2$inchikey)
+            
+            # targets
+            targets[[i]] <- tibble::tibble(name = query_string[i],
+                                           kegg_id = NA,
+                                           pubchem_cid = b3$pubchem_cid,
+                                           drugbank_id = NA,
+                                           target_entrez = NA,
+                                           target_symbol = NA)
+            
+            # pathways
+            pathways[[i]] <- tibble::tibble(name = query_string[i],
+                                            kegg_id = NA,
+                                            pubchem_cid = b3$pubchem_cid,
+                                            drugbank_id = NA,
+                                            pathway_id = NA,
+                                            pathway_name = NA)
+            
+            # diseases
+            diseases[[i]] <- tibble::tibble(name = query_string[i],
+                                            kegg_id = NA,
+                                            pubchem_cid = b3$pubchem_cid,
+                                            drugbank_id = NA,
+                                            disease_id = NA,
+                                            disease_name = NA)
+            
+            # uses
+            uses[[i]] <- tibble::tibble(name = query_string[i],
+                                        kegg_id = NA,
+                                        pubchem_cid = b3$pubchem_cid,
+                                        drugbank_id = NA,
+                                        drug_uses = NA)
+            
+            # drug groups
+            dgroups[[i]] <- tibble::tibble(name = query_string[i],
+                                           kegg_id = NA,
+                                           pubchem_cid = b3$pubchem_cid,
+                                           drugbank_id = NA,
+                                           group_id = NA,
+                                           group_name = NA)
+          }
+        } else { # if it has no cas but has pubchem id
+          # general properties
+          general[[i]] <- tibble::tibble(name = query_string[i],
+                                         kegg_id = NA,
+                                         pubchem_cid = b3$pubchem_cid,
+                                         drugbank_id = NA,
+                                         cas_rn = NA,
+                                         formula = b2$molecular_formula,
+                                         exact_mass = NA,
+                                         molecular_weight = b2$molecular_weight,
+                                         chebi_id = NA,
+                                         canonical_smiles = b2$canonical_smiles,
+                                         inchikey = b2$inchikey)
+          
+          # targets
+          targets[[i]] <- tibble::tibble(name = query_string[i],
+                                         kegg_id = NA,
+                                         pubchem_cid = b3$pubchem_cid,
+                                         drugbank_id = NA,
+                                         target_entrez = NA,
+                                         target_symbol = NA)
+          
+          # pathways
+          pathways[[i]] <- tibble::tibble(name = query_string[i],
+                                          kegg_id = NA,
+                                          pubchem_cid = b3$pubchem_cid,
+                                          drugbank_id = NA,
+                                          pathway_id = NA,
+                                          pathway_name = NA)
+          
+          # diseases
+          diseases[[i]] <- tibble::tibble(name = query_string[i],
+                                          kegg_id = NA,
+                                          pubchem_cid = b3$pubchem_cid,
+                                          drugbank_id = NA,
+                                          disease_id = NA,
+                                          disease_name = NA)
+          
+          # uses
+          uses[[i]] <- tibble::tibble(name = query_string[i],
                                       kegg_id = NA,
                                       pubchem_cid = b3$pubchem_cid,
                                       drugbank_id = NA,
-                                      pathway_id = NA,
-                                      pathway_name = NA)
-      
-      # diseases
-      diseases[[i]] <- tibble::tibble(name = query_string[i],
-                                      kegg_id = NA,
-                                      pubchem_cid = b3$pubchem_cid,
-                                      drugbank_id = NA,
-                                      disease_id = NA,
-                                      disease_name = NA)
-      
-      # uses
-      uses[[i]] <- tibble::tibble(name = query_string[i],
-                                  kegg_id = NA,
-                                  pubchem_cid = b3$pubchem_cid,
-                                  drugbank_id = NA,
-                                  drug_uses = NA)
-      
-      # drug groups
-      dgroups[[i]] <- tibble::tibble(name = query_string[i],
-                                     kegg_id = NA,
-                                     pubchem_cid = b3$pubchem_cid,
-                                     drugbank_id = NA,
-                                     group_id = NA,
-                                     group_name = NA)
+                                      drug_uses = NA)
+          
+          # drug groups
+          dgroups[[i]] <- tibble::tibble(name = query_string[i],
+                                         kegg_id = NA,
+                                         pubchem_cid = b3$pubchem_cid,
+                                         drugbank_id = NA,
+                                         group_id = NA,
+                                         group_name = NA)
+          }
+      } else { # <-- has no pubchem cid
+        # general properties
+        general[[i]] <- tibble::tibble(name = query_string[i],
+                                       kegg_id = NA,
+                                       pubchem_cid = NA,
+                                       drugbank_id = NA,
+                                       cas_rn = NA,
+                                       formula = NA,
+                                       exact_mass = NA,
+                                       molecular_weight = NA,
+                                       chebi_id = NA,
+                                       canonical_smiles = NA,
+                                       inchikey = NA)
+        
+        # targets
+        targets[[i]] <- tibble::tibble(name = query_string[i],
+                                       kegg_id = NA,
+                                       pubchem_cid = NA,
+                                       drugbank_id = NA,
+                                       target_entrez = NA,
+                                       target_symbol = NA)
+        
+        # pathways
+        pathways[[i]] <- tibble::tibble(name = query_string[i],
+                                        kegg_id = NA,
+                                        pubchem_cid = NA,
+                                        drugbank_id = NA,
+                                        pathway_id = NA,
+                                        pathway_name = NA)
+        
+        # diseases
+        diseases[[i]] <- tibble::tibble(name = query_string[i],
+                                        kegg_id = NA,
+                                        pubchem_cid = NA,
+                                        drugbank_id = NA,
+                                        disease_id = NA,
+                                        disease_name = NA)
+        
+        # uses
+        uses[[i]] <- tibble::tibble(name = query_string[i],
+                                    kegg_id = NA,
+                                    pubchem_cid = NA,
+                                    drugbank_id = NA,
+                                    drug_uses = NA)
+        
+        # drug groups
+        dgroups[[i]] <- tibble::tibble(name = query_string[i],
+                                       kegg_id = NA,
+                                       pubchem_cid = NA,
+                                       drugbank_id = NA,
+                                       group_id = NA,
+                                       group_name = NA)
+      }
     } 
   }
   
