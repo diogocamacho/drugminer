@@ -2,6 +2,15 @@
 
 `DrugMineR` is a package to retrieve information for a given drug, based on information found on [KEGG](https://www.kegg.jp), [PubChem](https://pubchem.ncbi.nlm.nih.gov), and [DrugBank](https://www.drugbank.ca), making use of `REST` APIs and data pre-processed. 
 
+## Installation
+You need the `devtools` package to install `drugminer`. If you don't have it, you can do `r install.packages("devtools")`. In R, do:
+
+```{r}
+devtools::install_github("diogocamacho/drugminer")
+library(drugminer)
+```
+
+
 ## Data pre-processing
 Included with the package are data objects extracted from KEGG and DrugBank. These can be easily updated with the provided functions `kegg_processing` and `parse_drugbank`, though this is not recommended (a few tweaks internally need to happen.) For completeness, the process for extracting these data is described below.
 
