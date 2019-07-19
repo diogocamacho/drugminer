@@ -15,3 +15,6 @@ A tibble with name and corresponding PubChem CID
 \description{
 Function converts a name query into a PubChem CID using the NCBI's REST API for PubChem.
 }
+\examples{
+name2cid(query = "vioxx")
+}

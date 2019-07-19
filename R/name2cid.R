@@ -5,7 +5,7 @@
 #' @param query A compound name (as a string)
 #' @return A tibble with name and corresponding PubChem CID
 #' 
-#' @example 
+#' @examples 
 #' name2cid(query = "vioxx")
 name2cid <- function(query) {
   
